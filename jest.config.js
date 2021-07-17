@@ -3,4 +3,7 @@ module.exports = {
   transform: {
     "^.+\\.vue$": "vue-jest",
   },
+  testMatch: [
+    "<rootDir>/src/components/**/*.spec.(js|jsx|ts|tsx)"
+  ]
 };
