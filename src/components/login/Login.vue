@@ -5,7 +5,8 @@
 	<input type="password" />
 
 	<div ref="hi" @click="test">Hello</div>
-	<p>{{ name }}</p>
+	<p>{{ name }} 윤복이는 바보다.</p>
+	<p>하하하</p>
 </template>
 
 <script lang="ts">
