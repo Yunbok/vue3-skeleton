@@ -1,22 +1,17 @@
-import { createStore } from 'vuex';
+import Vuex, { createStore, StoreOptions } from 'vuex';
 
-export default createStore({
-	state: {
-		name: '',
+import { login } from './modules/login/login';
+import { State as LoginState } from '@/store/modules/login/state';
+
+export type State = {
+	user: LoginState;
+};
+
+const store = createStore({
+	modules: {
+		login,
 	},
-	getters: {
-		nameLength: state => state.name.length,
-	},
-	mutations: {
-		TEST_DATA: (state, payload: string) => {
-			state.name = payload;
-		},
-	},
-	actions: {
-		test: async ({ commit }) => {
-			await alert('g');
-			commit('TEST_DATA', '안녕하세요');
-		},
-	},
-	modules: {},
 });
+export default store;
+
+// axios 연결 .env 파일

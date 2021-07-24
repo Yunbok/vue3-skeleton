@@ -3,10 +3,9 @@
 	<input type="text" @input="nameChange" />
 	<p>비밀번호 :</p>
 	<input type="password" />
-
-	<div ref="hi" @click="test">Hello</div>
-	<p>{{ name }} 윤복이는 바보다.</p>
-	<p>하하하</p>
+	<br /><br />
+	<button @click="loginCheck">로그인</button>
+	<div ref="hi" @click="test">{{ $store.getters['login/data'] }}</div>
 </template>
 
 <script lang="ts">
@@ -21,13 +20,24 @@ import {
 } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import axios, { AxiosPromise } from 'axios';
+
+const router = useRouter();
+const store = useStore();
+
+const loginCheck = () => {
+	axios.get('https://reqres.in/api/users?page=2').then(res => console.log(res));
+};
 
 export default defineComponent({
 	setup() {
-		const router = useRouter();
-		const store = useStore();
-
 		console.log('created');
+
+		//store.dispatch('setRootData', 'test');
+
+		//store.dispatch('moduleB/setRootData', 'test');
+
+		//store.dispatch('moduleA/setRootData', 'test');
 
 		const state = reactive({
 			name: '',
@@ -58,6 +68,7 @@ export default defineComponent({
 			...toRefs(state),
 			test,
 			nameChange,
+			loginCheck,
 		};
 	},
 });
